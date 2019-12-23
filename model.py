@@ -69,11 +69,8 @@ def create_model(vocabulary_size, seq_len):
     model.add(Embedding(vocabulary_size, seq_len,input_length=seq_len))
     model.add(LSTM(100,return_sequences=True))
     model.add(LSTM(100))
-    #  model.add(Dropout(0.2))
-    #  model.add(Dense(1000,activation='relu'))
-    #  model.add(Dropout(0.2))
-    #  model.add(Dense(1000,activation='relu'))
-    #  model.add(Dropout(0.2))
+    model.add(Dense(1000,activation='relu'))
+    model.add(Dropout(0.2))
     model.add(Dense(100,activation='relu'))
     model.add(Dropout(0.2))
     model.add(Dense(vocabulary_size,activation='softmax'))
@@ -89,7 +86,7 @@ dump(tokenizer,open('machado_tokenizer_Model4','wb'))
 model = create_model(vocabulary_size+1,seq_len)
 path = './checkpoints/word_pred_Model4.h5'
 checkpoint = ModelCheckpoint(path, monitor='loss', verbose=1, save_best_only=True, mode='min')
-model.fit(train_inputs,train_targets,batch_size=128,epochs=200,verbose=1,callbacks=[checkpoint])
+model.fit(train_inputs,train_targets,batch_size=128,epochs=200,verbose=1,callbacks=[checkpoint], validation_split=0.33)
 model.save('machado_modell4.h5')
 
 

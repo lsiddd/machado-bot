@@ -16,9 +16,9 @@ from pickle import load
 import numpy as np
 
 #This model just predict one word only
-model = load_model('./checkpoints/word_pred_Model4.h5')
+model = load_model('machado_modell4.h5')
 tokenizer = load(open('./machado_tokenizer_Model4','rb'))
-seq_len = 4
+seq_len = 9
 def gen_text(model, tokenizer, seq_len, seed_text, num_gen_words):
     output_text = []
     input_text = seed_text
@@ -40,7 +40,7 @@ def main():
     """Run the bot."""
     global update_id
     # Telegram Bot Authorization Token
-    bot = telegram.Bot('TOKEN')
+    bot = telegram.Bot('')
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.

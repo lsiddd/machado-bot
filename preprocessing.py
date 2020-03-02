@@ -11,12 +11,10 @@ import re
 import regex
 import time
 
-#reading the data from csv
-# data = pd.read_csv('EU-AU-Description-19-9-2019.csv', encoding="cp1252")z
-files = open("/home/lucas/machado")
-# read lines and convert to ascii
+files = open("texts/machado") # change this for the raw text file
+# read lines and convert to lowercase
 data = [i.lower() for i in files.readlines()]
-#  .strip().decode('utf-8').encode("ascii","ignore")
+
 def uniq(lst):
     last = object()
     for item in lst:
